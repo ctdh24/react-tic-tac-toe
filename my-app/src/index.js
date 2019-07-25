@@ -90,9 +90,9 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      //console.log(move ? history[move-1].location[move-1] : 'nope');
+      const locationString = move?findLocation(history[move-1].location[move-1]):'';
       const desc = move ?
-        'Go to move #' + move +' at location '+ history[move-1].location[move-1]:
+        'Go to move #' + move +' at '+ locationString:
         'Go to game start';
       return (
         <li key={move}>
@@ -150,4 +150,34 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function findLocation(number){
+  if(number===0){
+    return 'top-left';
+  }
+  else if (number===1) {
+    return 'top-middle';
+  }
+  else if (number===2) {
+    return 'top-right'
+  }
+  else if (number===3){
+    return 'middle-left';
+  }
+  else if (number===4) {
+    return 'middle';
+  }
+  else if (number===5) {
+    return 'middle-right'
+  }
+  else if (number===6){
+    return 'bottom-left';
+  }
+  else if (number===7) {
+    return 'bottom-middle';
+  }
+  else if (number===8) {
+    return 'bottom-right'
+  }
 }
